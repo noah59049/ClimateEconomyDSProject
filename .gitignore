@@ -1,5 +1,6 @@
 .DS_Store
 climate_merged.csv
+climate_with_states.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
