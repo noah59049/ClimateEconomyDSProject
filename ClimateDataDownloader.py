@@ -10,40 +10,25 @@ import gc
 
 # ChatGPT reads the data from files correctly
 
-#DONE Every dataframe has the same columns
+# DONE Every dataframe has the same columns
 
-#DONE Every measurement column has the comp_ and meas_ and years_ flag columns associated with it
+# DONE Every measurement column has the comp_ and meas_ and years_ flag columns associated with it
 
-#DONE comp_flag_ is always 'S' or ' '
+# DONE comp_flag_ is always 'S' or ' '
 
 # measurement value is -9999 iff comp_flag_ is ' ';
 
 # who knows about the years, there will probably be some assumptions
 
-
-# ChatGPT wrote this function
-def read_csv_from_web(url):
-    # Step 1: Fetch the webpage content
-    response = requests.get(url)
-
-    # Check if the request was successful
-    if response.status_code == 200:
-        csv_data = response.text
-
-        # Step 2: Parse the CSV data
-        # Use StringIO to read the CSV from the string
-        csv_file = StringIO(csv_data)
-        df = pd.read_csv(csv_file)
-
-        # Display the DataFrame
-        return df
-    else:
-        print(f"Failed to fetch the webpage. Status code: {response.status_code}")
-
 # And this one
 def get_csv_links(url):
     """Fetch all CSV links from the given webpage."""
     response = requests.get(url)
+    if response.status_code != 200:
+        print("Failed to fetch the page!")
+    else:
+        print("Response successful. Status code 200")
+
     soup = BeautifulSoup(response.content, 'html.parser')
     
     csv_links = []
